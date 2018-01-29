@@ -2,7 +2,7 @@ pkgname=tdodbc
 pkgver=16.20.00.12
 _pkgver="$(echo $pkgver | cut -d. -f1,2)"
 _pkgpfx="${pkgname}$(echo ${_pkgver} | tr -d '.')"
-pkgrel=1
+pkgrel=2
 pkgdesc="Teradata ODBC driver"
 arch=('x86_64')
 url="http://downloads.teradata.com/download/connectivity/odbc-driver/linux"
@@ -25,12 +25,12 @@ package() {
   install -m644 "${pkgdir}/opt/teradata/client/${_pkgver}/odbc_64/odbc.ini" "${pkgdir}/opt/teradata/client/${_pkgver}/odbc_64/odbcinst.ini" "${pkgdir}/opt/teradata/client/ODBC_64/"
   sed -i -e "s+${_pkgver}/odbc_64+ODBC_64+g" -e "s+client/${_pkgver}+client/ODBC_64+g" "${pkgdir}/opt/teradata/client/ODBC_64/"odbc*.ini
 
-  ln -s ${pkgdir}/opt/teradata/client/${_pkgver}/lib64                  ${pkgdir}/opt/teradata/client/${_pkgver}/odbc_64/lib
-  ln -s ${pkgdir}/opt/teradata/client/${_pkgver}/include                ${pkgdir}/opt/teradata/client/${_pkgver}/odbc_64/include
+  ln -s /opt/teradata/client/${_pkgver}/lib64                  ${pkgdir}/opt/teradata/client/${_pkgver}/odbc_64/lib
+  ln -s /opt/teradata/client/${_pkgver}/include                ${pkgdir}/opt/teradata/client/${_pkgver}/odbc_64/include
 
-  ln -s ${pkgdir}/opt/teradata/client/${_pkgver}/lib64                  ${pkgdir}/opt/teradata/client/ODBC_64/lib
-  ln -s ${pkgdir}/opt/teradata/client/${_pkgver}/odbc_64/locale         ${pkgdir}/opt/teradata/client/ODBC_64/locale
-  ln -s ${pkgdir}/opt/teradata/client/${_pkgver}/include                ${pkgdir}/opt/teradata/client/ODBC_64/include
+  ln -s /opt/teradata/client/${_pkgver}/lib64                  ${pkgdir}/opt/teradata/client/ODBC_64/lib
+  ln -s /opt/teradata/client/${_pkgver}/odbc_64/locale         ${pkgdir}/opt/teradata/client/ODBC_64/locale
+  ln -s /opt/teradata/client/${_pkgver}/include                ${pkgdir}/opt/teradata/client/ODBC_64/include
 
   # Don't install DataDirect drivers because they might conflict with unixodbc
   # ln -s ${pkgdir}/opt/teradata/client/${_pkgver}/lib64/ddtrc27.so       ${pkgdir}/opt/teradata/client/${_pkgver}/lib64/odbctrac.so
