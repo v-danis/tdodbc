@@ -1,8 +1,8 @@
 pkgname=tdodbc
-pkgver=16.20.00.12
+pkgver=16.20.00.18
 _pkgver="$(echo $pkgver | cut -d. -f1,2)"
 _pkgpfx="${pkgname}$(echo ${_pkgver} | tr -d '.')"
-pkgrel=2
+pkgrel=1
 pkgdesc="Teradata ODBC driver"
 arch=('x86_64')
 url="http://downloads.teradata.com/download/connectivity/odbc-driver/linux"
@@ -10,7 +10,7 @@ license=('Proprietary')
 depends=('unixodbc')
 
 source=("${_pkgpfx}__ubuntu_indep.${pkgver}-1.tar.gz")
-md5sums=('e7e5df90deb73f93245f36ac94bfc005')
+md5sums=('0fbc24a5d496fc18e0304280b830526d')
 
 package() {
   ar xv "${srcdir}/${_pkgpfx}/${_pkgpfx}-${pkgver}-1.noarch.deb"
