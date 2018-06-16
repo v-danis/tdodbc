@@ -1,5 +1,5 @@
 pkgname=tdodbc
-pkgver=16.20.00.28
+pkgver=16.20.00.32
 _pkgver="$(echo $pkgver | cut -d. -f1,2)"
 _pkgpfx="${pkgname}$(echo ${_pkgver} | tr -d '.')"
 pkgrel=1
@@ -10,7 +10,7 @@ license=('Proprietary')
 depends=('unixodbc')
 
 source=("${_pkgpfx}__ubuntu_indep.${pkgver}-1.tar.gz")
-md5sums=('8f3c0b3fbf9d98ffa178c04927f75afe')
+md5sums=('d5f4b596cd92cb900f50eccae7f1c6a1')
 
 package() {
   ar xv "${srcdir}/${_pkgpfx}/${_pkgpfx}-${pkgver}-1.noarch.deb"
