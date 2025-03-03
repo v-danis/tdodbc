@@ -1,5 +1,5 @@
 pkgname=tdodbc
-pkgver=16.20.00.32
+pkgver=20.00.00.19
 _pkgver="$(echo $pkgver | cut -d. -f1,2)"
 _pkgpfx="${pkgname}$(echo ${_pkgver} | tr -d '.')"
 pkgrel=1
@@ -9,16 +9,15 @@ url="http://downloads.teradata.com/download/connectivity/odbc-driver/linux"
 license=('Proprietary')
 depends=('unixodbc')
 
-source=("${_pkgpfx}__ubuntu_indep.${pkgver}-1.tar.gz")
-md5sums=('d5f4b596cd92cb900f50eccae7f1c6a1')
+source=("${_pkgpfx}__ubuntu_${arch}.${pkgver}-1.tar.gz")
+md5sums=('b0c297ca08610170aa379a3e422ed3cc')
 
 package() {
-  ar xv "${srcdir}/${_pkgpfx}/${_pkgpfx}-${pkgver}-1.noarch.deb"
+  ar xv "${srcdir}/${_pkgpfx}/${_pkgpfx}-${pkgver}-1.${arch}.deb"
   tar -xvaf ${srcdir}/data.tar.xz
   cp -r "${srcdir}/opt" "${srcdir}/usr" "${pkgdir}/"
 
-  mv "${pkgdir}/opt/teradata/client/${_pkgver}/odbc_32/ThirdPartyLicensesTTU.txt" "${pkgdir}/opt/teradata/client/${_pkgver}/ThirdPartyLicensesTTU.txt"
-  rm -rf "${pkgdir}/opt/teradata/client/${_pkgver}/lib" "${pkgdir}/opt/teradata/client/${_pkgver}/odbc_32" "${pkgdir}/opt/teradata/client/${_pkgver}/bin/tdxodbc"
+  rm -rf "${pkgdir}/opt/teradata/client/${_pkgver}/lib" "${pkgdir}/opt/teradata/client/${_pkgver}/bin/tdxodbc"
 
   sed -i "s+lib64+odbc_64/lib+g" "${pkgdir}/opt/teradata/client/${_pkgver}/odbc_64/"odbc*.ini
   install -dm755 "${pkgdir}/opt/teradata/client/ODBC_64"
